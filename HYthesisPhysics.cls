@@ -1,5 +1,5 @@
 %%
-%% This is the file HYthesisTCM.cls.
+%% This is the file HYthesisPhysics.cls.
 %% 
 %% Based heavily on HYthesisML.cls created at the Department of Computer Science at the University of Helsinki.
 %%
@@ -12,17 +12,51 @@
   % version 2005/12/01 or later.
 %% 
 \NeedsTeXFormat{LaTeX2e}[2000/06/01]
-\ProvidesClass{HYthesisTCM}[2025/08/22 v1.0 Document class for MSc theses in the Master's Programme in Theoretical and Computational Methods at the University of Helsinki]
+\ProvidesClass{HYthesisPhysics}[2025/12/07 v1.0 Document class for MSc theses of physics students at the University of Helsinki.]
 %
 \newif\if@finnish%
 \newif\if@swedish%
 \newif\if@english%
 \@finnishfalse\@swedishfalse\@englishfalse%
 \newif\if@latin\@latinfalse%
-% tcm specific content starts
+% programme specific content starts
 \newif\if@tcm% 
 \@tcmfalse%
-% tcm specific content ends
+\newif\if@paras% 
+\@parasfalse%
+\newif\if@astro% 
+\@astrofalse%
+\newif\if@particle% 
+\@particlefalse%
+\newif\if@atm% 
+\@atmfalse%
+\newif\if@mac% 
+\@macfalse%
+\newif\if@aerosol% 
+\@aerosolfalse%
+\newif\if@biosphere% 
+\@biospherefalse%
+\newif\if@geophysics% 
+\@geophysicsfalse%
+\newif\if@remote% 
+\@remotefalse%
+\newif\if@meteorology% 
+\@meteorologyfalse%
+\newif\if@chemistry% 
+\@chemistryfalse%
+\newif\if@physics% 
+\@physicsfalse%
+\newif\if@atmospheric% 
+\@atmosphericfalse%
+\newif\if@climate% 
+\@climatefalse%
+% programme specific content ends
+\newif\if@onesupervisor% 
+\@onesupervisorfalse%
+\newif\if@twosupervisors% 
+\@twosupervisorsfalse%
+\newif\if@threesupervisors% 
+\@threesupervisorsfalse%
 %
 \DeclareOption{finnish}{\@finnishtrue}
 \DeclareOption{swedish}{\@swedishtrue}
@@ -33,7 +67,25 @@
 
 % programme specific content starts
 \DeclareOption{tcm}{\@tcmtrue}
+\DeclareOption{paras}{\@parastrue}
+\DeclareOption{astro-track}{\@astrotrue}
+\DeclareOption{particle-track}{\@particletrue}
+\DeclareOption{atm}{\@atmtrue}
+\DeclareOption{mac}{\@mactrue}
+\DeclareOption{aerosol-track}{\@aerosoltrue}
+\DeclareOption{biosphere-track}{\@biospheretrue}
+\DeclareOption{geophysics-track}{\@geophysicstrue}
+\DeclareOption{remote-track}{\@remotetrue}
+\DeclareOption{meteorology-track}{\@meteorologytrue}
+\DeclareOption{chemistry-track}{\@chemistrytrue}
+\DeclareOption{physics-track}{\@physicstrue}
+\DeclareOption{atmospheric-track}{\@atmospherictrue}
+\DeclareOption{climate-track}{\@climatetrue}
 % programme specific content ends
+
+\DeclareOption{one-supervisor}{\@onesupervisortrue}
+\DeclareOption{two-supervisors}{\@twosupervisorstrue}
+\DeclareOption{three-supervisors}{\@threesupervisorstrue}
 
 \newif\if@oneside
 \newif\if@twoside
@@ -253,9 +305,6 @@
 %\subject{}
 % \newcommand{\subject}{}
 
-\newcommand{\getSubject}{\iflanguage{english}{Master's Programme in Theoretical and Computational Methods}{}\iflanguage{finnish}{Teoreettisten ja laskennallisten\\menetelmien maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i teoretiska och ber\"akningsmetoder}{}
-}
-
 % \newcommand{\seminar}[1]{\gdef\@seminar{#1}}
 %%%%% Document details
 \newcommand{\depositeplace}{\iflanguage{english}{Helsinki University Library}{}\iflanguage{finnish}{Helsingin yliopiston kirjasto}{}\iflanguage{swedish}{Helsingfors universitets bibliotek}{}}
@@ -270,30 +319,120 @@
 \newcommand{\supervisorslabel}{\iflanguage{english}{Supervisor(s)}{}\iflanguage{finnish}{Ohjaaja(t)}{}\iflanguage{swedish}{Handledare}{}}
 \newcommand{\examinerlabel}{\iflanguage{english}{Examiner(s)}{}\iflanguage{finnish}{Tarkastaja(t)}{}\iflanguage{swedish}{Examinatorer}{}}
 % From document
-\newcommand{\supervisors}[1]{\gdef\@supervisors{#1}}
+\if@onesupervisor
+    \newcommand{\supervisors}[3]{\gdef\@supervisors{#1}
+    \gdef\supervisorstext{#1}}
+\fi
+\if@twosupervisors
+    \newcommand{\supervisors}[3]{\gdef\@supervisors{#1\\&#2}
+    \gdef\supervisorstext{#1, #2}}
+\fi
+\if@threesupervisors
+    \newcommand{\supervisors}[3]{\gdef\@supervisors{#1\\&#2\\&#3}
+    \gdef\supervisorstext{#1, #2, #3}}
+\fi
 \newcommand{\examiners}[1]{\gdef\@examiners{#1}}
-
 %%%%% Organisation elements
 \newcommand{\uh}{\iflanguage{english}{University of Helsinki}{}\iflanguage{finnish}{Helsingin yliopisto}{}\iflanguage{swedish}{Helsingfors Universitet}{}}
 \newcommand{\address}{\iflanguage{english}{P. O. Box 64 (Gustaf H\"allstr\"omin katu 2)\\00014 University of Helsinki, Finland}{}\iflanguage{finnish}{PL 64 (Gustaf H\"allstr\"omin katu 2)\\00014 Helsingin yliopisto}{}\iflanguage{swedish}{PB 64 (Gustaf H\"allstr\"oms gata 2)\\00014 Helsingfors Universitet, Finland}{}}
 \newcommand{\helsinki}{\iflanguage{english}{Helsinki}{}\iflanguage{finnish}{Helsinki}{}\iflanguage{swedish}{Helsingfors}{}}
 \newcommand{\faculty}{\iflanguage{english}{Faculty of Science}{}\iflanguage{finnish}{Matemaattis-luonnontieteellinen tiedekunta}{}\iflanguage{swedish}{Matematisk-naturvetenskapliga fakulteten}{}}
-
-
-
+\newcommand{\level}{\iflanguage{english}{Master's thesis}{}\iflanguage{finnish}{Maisterintutkielma}{}\iflanguage{swedish}{Magisteravhandling}{}
+}
+\renewcommand{\oppiaine}{{Koulutusohjelma --- Utbildningsprogram  --- Study programme}}
 
 %%% Process degree specific info
 
 \if@tcm
-    \newcommand{\level}{\iflanguage{english}{Master's thesis}{}\iflanguage{finnish}{Maisterintutkielma}{}\iflanguage{swedish}{Magisteravhandling}{}
-    }
     \newcommand{\programme}{\iflanguage{english}{Master's Programme in Theoretical and Computational Methods}{}\iflanguage{finnish}{Teoreettisten ja laskennallisten\\menetelmien maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i teoretiska och ber\"akningsmetoder}{}
     }
-    \renewcommand{\oppiaine}{{Koulutusohjelma --- Utbildningsprogram  --- Study programme}}
-    \newcommand{\department}{\programme}
+\fi
+
+\if@paras
+    \newcommand{\programme}{\iflanguage{english}{Master’s Programme in Particle Physics and Astrophysical Sciences}{}\iflanguage{finnish}{Alkeishiukkasfysiikan ja astrofysikaalisten\\tieteiden maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i elementarpartikelfysik\\och astrofysikaliska vetenskaper}{}
+    }
+    \if@astro
+        \newcommand{\studytrack}{\iflanguage{english}{Astrophysical Sciences}{}\iflanguage{finnish}{Astrofysikaaliset tieteet}{}\iflanguage{swedish}{Astrofysikaliska vetenskaper}{}
+        }
+    \fi
+    \if@particle
+        \newcommand{\studytrack}{\iflanguage{english}{Particle Physics and Cosmology}{}\iflanguage{finnish}{Alkeishiukkasfysiikka ja kosmologia}{}\iflanguage{swedish}{Elementarpartikelfysik och kosmologi}{}
+        }
+    \fi
+\fi
+
+\if@atm
+    \newcommand{\programme}{\iflanguage{english}{Master's Programme in Atmospheric Sciences}{}\iflanguage{finnish}{Ilmakeh\"atieteiden maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i atmosf\"arsvetenskaper}{}
+    }
+    \if@aerosol
+        \newcommand{\studytrack}{\iflanguage{english}{Aerosol Physics}{}\iflanguage{finnish}{Aerosolifysiikka}{}\iflanguage{swedish}{Aerosolfysik}{}
+        }
+    \fi
+    \if@biosphere
+        \newcommand{\studytrack}{\iflanguage{english}{Biosphere-atmosphere cycle}{}\iflanguage{finnish}{Biosf\"a\"arin ja ilmakeh\"an vuorovaikutukset}{}\iflanguage{swedish}{Biosf\"arens och atmosf\"arens v\"axelverkningar}{}
+        }
+    \fi
+    \if@geophysics
+        \newcommand{\studytrack}{\iflanguage{english}{Geophysics of the Hydrosphere}{}\iflanguage{finnish}{Hydrosf\"a\"arin geofysiikka}{}\iflanguage{swedish}{Hydrosf\"arens geofysik}{}
+        }
+    \fi
+    \if@remote
+        \newcommand{\studytrack}{\iflanguage{english}{Remote sensing}{}\iflanguage{finnish}{Kaukokartoitus}{}\iflanguage{swedish}{Fj\"arranalys}{}
+        }
+    \fi
+    \if@meteorology
+        \newcommand{\studytrack}{\iflanguage{english}{Meteorology}{}\iflanguage{finnish}{Meteorologia}{}\iflanguage{swedish}{Meteorologi}{}
+        }
+    \fi
+    \if@chemistry
+        \newcommand{\studytrack}{\iflanguage{english}{Atmospheric Chemistry and Analysis}{}\iflanguage{finnish}{Ilmakeh\"an kemia ja analyysi}{}\iflanguage{swedish}{Atmosf\"arens kemi och analys}{}
+        }
+    \fi
 \fi
 
 
+\if@mac
+    \newcommand{\programme}{\iflanguage{english}{Master’s Programme in Meteorology, Atmospheric Sciences\\and Climate-System Sciences}{}\iflanguage{finnish}{Meteorologian, ilmakeh\"a- ja ilmastoj\"arjestelm\"atieteiden\\maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i meteorologi, atmosf\"arsvetenskaper\\och klimatvetenskaper}{}
+    }
+    \if@aerosol
+        \newcommand{\studytrack}{\iflanguage{english}{Aerosol Physics}{}\iflanguage{finnish}{Aerosolifysiikka}{}\iflanguage{swedish}{Aerosolfysik}{}
+        }
+    \fi
+    \if@biosphere
+        \newcommand{\studytrack}{\iflanguage{english}{Biosphere-atmosphere cycle}{}\iflanguage{finnish}{Biosf\"a\"arin ja ilmakeh\"an vuorovaikutukset}{}\iflanguage{swedish}{Biosf\"arens och atmosf\"arens v\"axelverkningar}{}
+        }
+    \fi
+    \if@geophysics
+        \newcommand{\studytrack}{\iflanguage{english}{Geophysics of the Hydrosphere}{}\iflanguage{finnish}{Hydrosf\"a\"arin geofysiikka}{}\iflanguage{swedish}{Hydrosf\"arens geofysik}{}
+        }
+    \fi
+    \if@remote
+        \newcommand{\studytrack}{\iflanguage{english}{Remote sensing}{}\iflanguage{finnish}{Kaukokartoitus}{}\iflanguage{swedish}{Fj\"arranalys}{}
+        }
+    \fi
+    \if@meteorology
+        \newcommand{\studytrack}{\iflanguage{english}{Meteorology}{}\iflanguage{finnish}{Meteorologia}{}\iflanguage{swedish}{Meteorologi}{}
+        }
+    \fi
+    \if@chemistry
+        \newcommand{\studytrack}{\iflanguage{english}{Atmospheric Chemistry and Analysis}{}\iflanguage{finnish}{Ilmakeh\"an kemia ja analyysi}{}\iflanguage{swedish}{Atmosf\"arens kemi och analys}{}
+        }
+    \fi
+    \if@physics
+        \newcommand{\studytrack}{\iflanguage{english}{Physics of the Hydrosphere}{}\iflanguage{finnish}{Hydrosf\"a\"arin fysiikka}{}\iflanguage{swedish}{Hydrosf\"arens fysik}{}
+        }
+    \fi
+    \if@atmospheric
+        \newcommand{\studytrack}{\iflanguage{english}{Atmospheric Chemistry and Aerosol Physics}{}\iflanguage{finnish}{Ilmakeh\"an kemia ja aerosolifysiikka}{}\iflanguage{swedish}{Atmosf\"arens kemi och aerosolfysik}{}
+        }
+    \fi
+    \if@climate
+        \newcommand{\studytrack}{\iflanguage{english}{Climate and Sustainability}{}\iflanguage{finnish}{Ilmastonmuutos ja kest\"av\"a kehitys}{}\iflanguage{swedish}{Klimatf\"or\"andring och h\r{a}llbar utveckling}{}
+        }
+    \fi
+\fi
+
+\newcommand{\department}{\programme}
 %% actual parameters from document
 
 %% Look of the reports
@@ -495,28 +634,23 @@
 \hypersetup{pageanchor=true}
 \setcounter{page}{1}
 \label{title}
-%\if@seminar
-% \level{}
-%\fi
-
 
 \onehalfspacing
 
 \begin{center}
 \includegraphics[width=5cm]{template/figures/HY-logo-ml.png}
 
-%\makeatletter
+\if@onesupervisor
 \begin{large}
 \level
 
 \programme
 
-% VM: Removed study line = study track from title page
-%\if@csm
-    %TM- skip subject (=study line) 
-%\else
-%    {\subject}
-%\fi
+\if@tcm
+    % no study track
+\else
+    \studytrack
+\fi
 
 \end{large}
 
@@ -526,7 +660,7 @@
 {\bf \@title}
 \end{LARGE} 
 
-\vspace{2cm}
+\vspace{1.5cm}
 
 \begin{large}
 \@author
@@ -537,21 +671,21 @@
 \begin{large}
 \today
 \end{large}
-\vspace{1.25cm}
-%{\bf \@seminar}
+\vspace{0.75cm}
 
-% \vspace*{\fill}
 \begin{large}
 
 \def\reallyempty{}
 \begin{tabular}{l l}
-\supervisorslabel: & \@supervisors\\
+\supervisorslabel: &\@supervisors\\
 &\\
 \end{tabular}
 \end{large}
 
+\if@tcm
+    \vspace{1.5cm} 
+\fi
 
-\vspace{2.5cm} 
 
 {\rm\sc
     \faculty
@@ -562,6 +696,123 @@
 \vspace{0.25cm} 
 
 \address
+\fi
+
+\if@twosupervisors
+\begin{large}
+\level
+
+\programme
+
+\if@tcm
+    % no study track
+\else
+    \studytrack
+\fi
+
+\end{large}
+
+\vspace{1.7cm}
+
+\begin{LARGE}
+{\bf \@title}
+\end{LARGE} 
+
+\vspace{1.0cm}
+
+\begin{large}
+\@author
+\end{large}
+
+\vspace{14pt}
+
+\begin{large}
+\today
+\end{large}
+\vspace{0.75cm}
+
+\begin{large}
+
+\def\reallyempty{}
+\begin{tabular}{l l}
+\supervisorslabel: &\@supervisors\\
+&\\
+\end{tabular}
+\end{large}
+
+\if@tcm
+    \vspace{0.5cm} 
+\fi
+
+
+{\rm\sc
+    \faculty
+
+    \uh
+}
+
+\vspace{0.25cm} 
+
+\address
+\fi
+
+\if@threesupervisors
+\begin{large}
+\level
+
+\programme
+
+\if@tcm
+    % no study track
+\else
+    \studytrack
+\fi
+
+\end{large}
+
+\vspace{1.7cm}
+
+\begin{LARGE}
+{\bf \@title}
+\end{LARGE} 
+
+\vspace{1.0cm}
+
+\begin{large}
+\@author
+\end{large}
+
+\vspace{14pt}
+
+\begin{large}
+\today
+\end{large}
+\vspace{0.75cm}
+
+\begin{large}
+
+\def\reallyempty{}
+\begin{tabular}{l l}
+\supervisorslabel: &\@supervisors\\
+&\\
+\end{tabular}
+\end{large}
+
+\if@tcm
+    \vspace{0.5cm} 
+\fi
+
+
+{\rm\sc
+    \faculty
+
+    \uh
+}
+
+\vspace{0.25cm} 
+
+\address
+\fi
 
 %\makeatother
 \end{center}
@@ -630,24 +881,63 @@
 \begin{picture}(400,678)(0,0) %pic width is too small to get rid of the overfull hbox warning; just drawing wider; this seems to be no problem for latex page creation, as it only needs to fit the picture as defined, not to care about someone drawing outside the picture.
 
 %Put the content texts there
+%%% Programme specific content starts
+\if@tcm
 \put(5, 634){\makebox(200, 8)[l]{\abst@small \faculty}}
 \iflanguage{english}{
-    \put(161, 634){\makebox(200, 8)[l]{\abst@small \programme}}
+    \abst@small\put(162, 634){\makebox(200, 8)[l]{\programme}}
 }{}
 \iflanguage{swedish}{
-    \put(202, 634){\makebox(200, 8)[l]{\abst@small \programme}}
+    \abst@small\put(202, 634){\makebox(200, 8)[l]{\programme}}
 }{}
 \iflanguage{finnish}{
-    \abst@small\put(207, 634){\makebox(200, 18)[l]{\shortstack{ \programme}}}
+    \abst@small\put(207, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
 }{}
-% \put(233, 634){\makebox(200, 8)[l]{\abst@small \getSubject}}  
+\fi
+\if@paras
+\put(5, 634){\makebox(200, 8)[l]{\abst@small \faculty}}
+\iflanguage{english}{
+    \abst@small\put(132, 634){\makebox(200, 8)[l]{\programme}}
+}{}
+\iflanguage{swedish}{
+    \abst@small\put(202, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
+}{}
+\iflanguage{finnish}{
+    \abst@small\put(207, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
+}{}
+\fi
+\if@atm
+\put(5, 634){\makebox(200, 8)[l]{\abst@small \faculty}}
+\iflanguage{english}{
+    \abst@small\put(162, 634){\makebox(200, 8)[l]{\programme}}
+}{}
+\iflanguage{swedish}{
+    \abst@small\put(202, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
+}{}
+\iflanguage{finnish}{
+    \abst@small\put(207, 634){\makebox(200, 8)[l]{\programme}}
+}{}
+\fi
+\if@mac
+\put(5, 634){\makebox(200, 8)[l]{\abst@small \faculty}}
+\iflanguage{english}{
+    \abst@small\put(162, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
+}{}
+\iflanguage{swedish}{
+    \abst@small\put(202, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
+}{}
+\iflanguage{finnish}{
+    \abst@small\put(207, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
+}{}
+\fi
+%%% Programme specific content ends
 
 \put(5,  601){\makebox(100, 8)[l]{\abst@small \@author}}
 \put(5,  564)%
     {\parbox{450pt}{\abst@small \@title}}
  
 \put(5,  527)%
-    {\parbox{450pt}{\abst@small \@supervisors}}
+    {\parbox{450pt}{\abst@small \supervisorstext}}
  
 \put(5, 490){\makebox(100, 8)[l]{\abst@small \level}}
 \put(160, 490){\makebox(100, 8)[l]{\abst@small \today}}
@@ -667,6 +957,8 @@
 \put(1,670){\makebox(461,10)[l]{\abst@small\sc HELSINGIN YLIOPISTO -- HELSINGFORS UNIVERSITET -- UNIVERSITY OF HELSINKI}}
 
 %then the heading texts for the small boxes and lines 
+%%% Programme specific content starts
+\if@tcm
 \put(5,657){\makebox(150,6)[l]{\abst@tiny Tiedekunta --- Fakultet --- Faculty}}
 \iflanguage{english}{
 \put(157,629){\line(0,1){37}} % pystyviiva
@@ -680,6 +972,53 @@
 \put(203,629){\line(0,1){37}} % pystyviiva
 \put(208,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
 }{}
+\fi
+\if@paras
+\put(5,657){\makebox(150,6)[l]{\abst@tiny Tiedekunta --- Fakultet --- Faculty}}
+\iflanguage{english}{
+\put(127,629){\line(0,1){37}} % pystyviiva
+\put(132,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{swedish}{
+\put(198,629){\line(0,1){37}} % pystyviiva
+\put(203,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{finnish}{
+\put(203,629){\line(0,1){37}} % pystyviiva
+\put(208,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\fi
+\if@atm
+\put(5,657){\makebox(150,6)[l]{\abst@tiny Tiedekunta --- Fakultet --- Faculty}}
+\iflanguage{english}{
+\put(157,629){\line(0,1){37}} % pystyviiva
+\put(162,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{swedish}{
+\put(198,629){\line(0,1){37}} % pystyviiva
+\put(203,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{finnish}{
+\put(203,629){\line(0,1){37}} % pystyviiva
+\put(208,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\fi
+\if@mac
+\put(5,657){\makebox(150,6)[l]{\abst@tiny Tiedekunta --- Fakultet --- Faculty}}
+\iflanguage{english}{
+\put(157,629){\line(0,1){37}} % pystyviiva
+\put(162,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{swedish}{
+\put(198,629){\line(0,1){37}} % pystyviiva
+\put(203,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{finnish}{
+\put(203,629){\line(0,1){37}} % pystyviiva
+\put(208,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\fi
+%%% Programme specific content ends
 \put(0,629){\line(1,0){462}} 
 
 \put(5,620){\makebox(100,5)[l]{\abst@tiny Tekij\"a --- F\"orfattare --- Author}}

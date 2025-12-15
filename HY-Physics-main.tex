@@ -1,18 +1,41 @@
 %% Follow comments to support use.
 
+%% More useful tips can be found in Appendix B of the generated document.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% STEP 1: Choose options for MSc layout and your bibliographic style
+%% STEP 1: Choose options for the document and your bibliographic style
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%  Language: 
 %%      finnish, swedish, or english
 %%  Pagination (use twoside by default)  
 %%      oneside or twoside,
-%%  Study programme
-%%      tcm  = Master's thesis in Master's Programme in Theoretical and computational Methods;
+%%  Study programme:
+%%      tcm = Master's thesis in Master's Programme in Theoretical and computational Methods;
+%%      paras = Master’s Programme in Particle Physics and Astrophysical Sciences;
+%%      atm = Master's Programme in Atmospheric Sciences;
+%%      mac = Master’s Programme in Meteorology, Atmospheric Sciences and Climate-System Sciences; (For ATM students graduating after 31.7.2026.)
+%%  Additionally, if you are studying in ParAs or ATM, add your study track as an option.
+%%  ParAs:
+%%      astro-track = Astrophysical Sciences
+%%      particle-track = Particle Physics and Cosmology
+%%  ATM:
+%%      aerosol-track = Aerosol Physics
+%%      biosphere-track = Biosphere-atmosphere cycle
+%%      geophysics-track = Geophysics of the Hydrosphere
+%%      remote-track = Remote sensing
+%%      meteorology-track = Meteorology
+%%      chemistry-track = Atmospheric Chemistry and Analysis
+%%  MAC (same as ATM plus the following): 
+%%      physics-track = Physics of the Hydrosphere
+%%      atmospheric-track = Atmospheric Chemistry and Aerosol Physics
+%%      climate-track = Climate and Sustainability
+%%  Number of supervisors:
+%%      one-supervisor
+%%      two-supervisors
+%%      three-supervisors
 
-\documentclass[english,twoside,tcm]{HYthesisTCM} 
-
+\documentclass[english,twoside,paras,astro-track, two-supervisors]{HYthesisPhysics} 
 
 % If wanted, open new chapters only at right page.
 % By default, "openany".
@@ -85,8 +108,11 @@
 \date{\today}
 
 % Set supervisors, use the titles according to the thesis language
-% in English Prof. or Dr., or in Finnish toht. or tri or FT, TkT, Ph.D. or in Swedish... 
-\supervisors{Prof.~D.U.~Mind, Dr.~O.~Why}
+% in English Prof. or Dr., or in Finnish toht. or tri or FT, TkT, Ph.D. or in Swedish...
+% Choose the correct number of supervisors, that matches with your earlier choice of document class option. 
+% \supervisors{Prof.~Matti Meikäläinen}
+\supervisors{Prof.~Matti Meikäläinen}{Prof.~Maija Meikäläinen}
+% \supervisors{Prof.~Matti Meikäläinen}{Prof.~Maija Meikäläinen}{Dr.~John Doe}
 
 % \keywords{algorithms, data structures}
 % \additionalinformation{\translate{\track}}
@@ -94,7 +120,7 @@
 
 
 %% If you want to quote someone special. You can comment this line out and there will be nothing on the document.
-\quoting{Bachelor's degrees make pretty good placemats if you get them laminated.}{Jeph Jacques}
+% \quoting{Bachelor's degrees make pretty good placemats if you get them laminated.}{Jeph Jacques}
 
 
 %% OPTIONAL STEP: Set up properties and metadata for the pdf file that pdfLaTeX makes.
@@ -130,34 +156,33 @@
 %% STEP 3:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Write your abstract in the separate file, to be positioned here.
-%% You can make several abstract pages (if you want it in different languages),
-%% in which case you should also define the language of the abstract,
-%% as below.
+%% You can make several abstract pages (if you want it in different languages), in which case you should also define the language of the abstract, as below.
+%% It is sufficient to include the abstract in the language of the thesis. The only exception is for students who are required to demonstrate proficiency in Finnish or Swedish and whose thesis is written in English. See more in the instructions: https://studies.helsinki.fi/instructions/article/thesis-and-maturity-test-masters-and-licentiate-programmes
 
 \include{Ch.00_Abstract}
 \myquote
 
 %% Uncomment the following line if you want to include a preface in your thesis
-\preface{I would like to thank$\dots$}
+% \preface{I would like to thank$\dots$}
 
 %% Uncomment the following lines if you want to include a list of symbols in your thesis
-\renewcommand\nomgroup[1]{%
-  \item[\bfseries
-  \ifstrequal{#1}{B}{Coplanar waveguide resonator}{%
-  \ifstrequal{#1}{C}{Josephson junction}{%
-  \ifstrequal{#1}{A}{Constants }{}}}%
-]}
-\renewcommand{\nompreamble}{Some explanation about the list of symbols.}
-\nomenclature[B, 01]{CPW}{Coplanar waveguide \nomunit{}}
-\nomenclature[B, 02]{$2l$}{Length of the center conductor \nomunit{m}}
-\nomenclature[C, 01]{$x_\text{J}$}{Location of the Josephson junction \nomunit{m}}
-\nomenclature[C, 02]{$C_\text{J}$}{Capacitance of the Josephson junction \nomunit{F}}
-\nomenclature[A, 01]{$h$}{Planck constant \nomunit{$6.62607014 \cdot 10^{-34}$ Js}}
-\nomenclature[A, 02]{$e$}{Elementary charge \nomunit{$1.602176634 \cdot 10^{-19}$ C}}
-\mynomenclature
+% \renewcommand\nomgroup[1]{%
+%   \item[\bfseries
+%   \ifstrequal{#1}{B}{Coplanar waveguide resonator}{%
+%   \ifstrequal{#1}{C}{Josephson junction}{%
+%   \ifstrequal{#1}{A}{Constants }{}}}%
+% ]}
+% \renewcommand{\nompreamble}{Some explanation about the list of symbols.}
+% \nomenclature[B, 01]{CPW}{Coplanar waveguide \nomunit{}}
+% \nomenclature[B, 02]{$2l$}{Length of the center conductor \nomunit{m}}
+% \nomenclature[C, 01]{$x_\text{J}$}{Location of the Josephson junction \nomunit{m}}
+% \nomenclature[C, 02]{$C_\text{J}$}{Capacitance of the Josephson junction \nomunit{F}}
+% \nomenclature[A, 01]{$h$}{Planck constant \nomunit{$6.62607014 \cdot 10^{-34}$ Js}}
+% \nomenclature[A, 02]{$e$}{Elementary charge \nomunit{$1.602176634 \cdot 10^{-19}$ C}}
+% \mynomenclature
 
-% Place ToC
-%\newpage
+
+%% Place ToC
 \mytableofcontents
 
 

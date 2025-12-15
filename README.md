@@ -1,0 +1,1 @@
+This is the MSc thesis template for physics students at the University of Helsinki. The thesis template currently supports three Master's Programmes: TCM, ParAs, and ATM. For more information on how to write your thesis, go to [https://studies.helsinki.fi](https://studies.helsinki.fi).

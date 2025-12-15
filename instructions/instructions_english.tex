@@ -3,7 +3,7 @@
 
 \section{General Setup}
 
-In the HY-TCM-main.tex file you will find the following STEPS 0--4. Below you can find related instructions.
+In the HY-Physics-main.tex file you will find instructions of how to use the template as comments. The instructions are divided into STEPS 1--4. Below you can find related instructions.
 \vspace{0.5cm}
 
 \textbf{STEP 0 -- Access the thesis template}
@@ -11,41 +11,36 @@ In the HY-TCM-main.tex file you will find the following STEPS 0--4. Below you ca
 \begin{itemize}
 \item Import the thesis template into a new Overleaf project. The easiest way to do it is to:
 \begin{itemize}
-    \item Obtain a zip file of the LaTeX template from the webpage of your programme.
-    \item Go to \url{https://www.overleaf.com/edu/helsinki} and login to Overleaf with your university credentials.
-    \item Go to the list of your projects at \url{https://www.overleaf.com/project}, click ``New Project'' and ``Upload Project''.,  the projects under your account 
-    \item Then upload the zip with the template.
-    \item You are now ready to write your thesis in Overleaf by editing the template, you can start by renaming the project.
+    \item Click on the name of the template on the top of the Overleaf page and choose ''Make a copy''. This will create a copy of the template that you can edit and is only visible for you.
+    \item Make sure you have connected your University of Helsinki email to your Overleaf account to access useful tools.
 \end{itemize}
 \end{itemize}
 
+\textbf{STEP 1 -- Choose options for the document and your bibliographic style}
+\begin{itemize}
+    \item In the \texttt{documentclass} command you can choose:
+    \begin{itemize}
+        \item The language of your thesis.
+        \item Your Master's programme.
+        \item Your study track (not TCM)
+        \item The number of supervisors you have.
+    \end{itemize}
+    \item Choose your bibliography style. The default style is numbered [1], but it can be easily changed to Author-Year (Einstein, 1905) or alphabetical [Ein05], as the examples of these are in comments. Remember to discuss the style to use with your supervisor. See App.~\ref{app:bibliography} for details.
+\end{itemize}
 
-{\textbf{STEP 1 -- Set up your personal information}}
+
+{\textbf{STEP 2 -- Set up your personal information}}
 
 \begin{enumerate}
 \item Specify the title of your thesis with \texttt{\textbackslash title\{\}}.
 \item Specify your name to the author field with \texttt{\textbackslash author\{\}}.
 \item Specify the names of your supervisors of the thesis with \texttt{\textbackslash supervisors\{\}}.
-\item Specify the keywords of the thesis with \texttt{\textbackslash keywords\{\}}.
 \end{enumerate}
 
-{\textbf{STEP 2 -- Writing your thesis}}
-
-\begin{enumerate}
-\item There are some minimal contents and instructions below 
-\item Remove, or comment out, this appendix from your thesis.
-\end{enumerate}
-
-{\textbf{STEP 3 -- Set your bibliography style}}
+{\textbf{STEP 3 -- Write your abstract}}
 
 \begin{itemize}
-\item The default style is numbered [1], but it can be easily changed to Author-Year (Einstein, 1905) or alphabetical [Ein05], as the examples of these are in comments.
-\item Discuss the style to use with your supervisor.
-\end{itemize}
-
-{\textbf{STEP 4 -- Write your abstract}}
-
-\begin{itemize}
+\item Write your abstract and choose keywords with \texttt{\textbackslash keywords\{\}}. You should probably do this only after you have written most of your thesis.
 \item You can have the abstract in multiple languages with the \texttt{otherlanguages} environment. The example below shows how to provide an English abstract: 
 
 \begin{verbatim}
@@ -58,9 +53,20 @@ Your abstract text goes here.
 
 \end{itemize}
 
-\section{Bibliography in Latex}
+{\textbf{STEP 4 -- Writing your thesis}}
 
-The bibliography is defined in a separate \texttt{.bib} file. For this template, it is named \texttt{bibliography.bib} and includes the content show in Figure~\ref{bibexamples}.
+\begin{enumerate}
+\item It is usually a good idea to write each chapter in its own \texttt{.tex} file and use either \texttt{\textbackslash include\{\}} or \texttt{\textbackslash input\{\}} to insert them into the main document.
+\item There are some additional instructions below about writing in \LaTeX and including figures and tables.
+\item Remove, or comment out, this appendix from your thesis.
+\end{enumerate}
+
+
+
+\section{Bibliography in Latex}\label{app:bibliography}
+
+The bibliography is defined in a separate \texttt{.bib} file. For this template, it is named\\
+\texttt{bibliography.bib} and includes the content show in Figure~\ref{bibexamples}.
 
 Chapter Bibliography lists all the works that you refer to in your text. You refer to the works in the bibliography using an appropriate \emph{citation key}.
 %
@@ -68,11 +74,11 @@ Chapter Bibliography lists all the works that you refer to in your text. You ref
 
 
 References are done using \texttt{\textbackslash citep\{einstein\}}, which generates in text a citation formatted according to the selected style \citep{einstein}, or \texttt{\textbackslash citep\{latexcompanion,knuth99\}}, which generates \citep{latexcompanion,knuth99}. 
-As examples of a different kinds of citations (see how these look in the Latex source), we can write \citep{einstein} to refer to the work written by \citeauthor{einstein} in \citeyear{einstein}, because the work by \citet{einstein} appears in the bilbliography included in this template.
+As examples of a different kinds of citations (see how these look in the Latex source), we can write \citep{einstein} to refer to the work written by \citeauthor{einstein} in \citeyear{einstein}, because the work by \citet{einstein} appears in the bibliography included in this template.
 
 Note that there are different possible styles for the bibliography and citation keys.
 %
-Consult your supervisors on the chosen style -- and once you arrive at a preferred style, use it consistently throughout the thesis.
+Consult your supervisors on the chosen style---once you arrive at a preferred style, use it consistently throughout the thesis.
 
 \begin{figure}[ht]
     \centering
