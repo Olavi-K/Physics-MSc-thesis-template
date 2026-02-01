@@ -50,6 +50,20 @@
 \@atmosphericfalse%
 \newif\if@climate% 
 \@climatefalse%
+\newif\if@matres%
+\@matresfalse%
+\newif\if@experimental% 
+\@experimentalfalse%
+\newif\if@computational% 
+\@computationalfalse%
+\newif\if@medical% 
+\@medicalfalse%
+\newif\if@polymer% 
+\@polymerfalse%
+\newif\if@inorganic% 
+\@inorganicfalse%
+\newif\if@electronics% 
+\@electronicsfalse%
 % programme specific content ends
 \newif\if@onesupervisor% 
 \@onesupervisorfalse%
@@ -81,6 +95,13 @@
 \DeclareOption{physics-track}{\@physicstrue}
 \DeclareOption{atmospheric-track}{\@atmospherictrue}
 \DeclareOption{climate-track}{\@climatetrue}
+\DeclareOption{matres}{\@matrestrue}
+\DeclareOption{experimental-track}{\@experimentaltrue}
+\DeclareOption{computational-track}{\@computationaltrue}
+\DeclareOption{medical-track}{\@medicaltrue}
+\DeclareOption{polymer-track}{\@polymertrue}
+\DeclareOption{inorganic-track}{\@inorganictrue}
+\DeclareOption{electronics-track}{\@electronicstrue}
 % programme specific content ends
 
 \DeclareOption{one-supervisor}{\@onesupervisortrue}
@@ -390,6 +411,35 @@
     \fi
 \fi
 
+\if@matres
+    \newcommand{\programme}{\iflanguage{english}{Master's Programme in Materials Research}{}\iflanguage{finnish}{
+Materiaalitutkimuksen maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i materialforskning}{}
+    }
+    \if@experimental
+        \newcommand{\studytrack}{\iflanguage{english}{Experimental Materials Physics}{}\iflanguage{finnish}{Kokeellinen materiaalifysiikka}{}\iflanguage{swedish}{Experimentell materialfysik}{}
+        }
+    \fi
+    \if@computational
+        \newcommand{\studytrack}{\iflanguage{english}{Computational materials physics}{}\iflanguage{finnish}{Laskennallinen materiaalifysiikka}{}\iflanguage{swedish}{Ber\"akningsmaterialfysik}{}
+        }
+    \fi
+    \if@medical
+        \newcommand{\studytrack}{\iflanguage{english}{Medical physics and biophysics}{}\iflanguage{finnish}{L\"a\"aketieteellinen fysiikka ja biofysiikka}{}\iflanguage{swedish}{Medicinsk fysik och biofysik}{}
+        }
+    \fi
+    \if@polymer
+        \newcommand{\studytrack}{\iflanguage{english}{Polymer materials chemistry}{}\iflanguage{finnish}{Polymeerimateriaalikemia}{}\iflanguage{swedish}{Polymermaterialkemi}{}
+        }
+    \fi
+    \if@inorganic
+        \newcommand{\studytrack}{\iflanguage{english}{Inorganic materials chemistry}{}\iflanguage{finnish}{Ep\"aorgaaninen materiaalikemia}{}\iflanguage{swedish}{Oorganisk materialkemi}{}
+        }
+    \fi
+    \if@electronics
+        \newcommand{\studytrack}{\iflanguage{english}{Electronics and industrial applications}{}\iflanguage{finnish}{Elektroniikka ja teollisuuden sovellukset}{}\iflanguage{swedish}{Elektronik och industriella till\"ampningar}{}
+        }
+    \fi
+\fi
 
 \if@mac
     \newcommand{\programme}{\iflanguage{english}{Master’s Programme in Meteorology, Atmospheric Sciences\\and Climate-System Sciences}{}\iflanguage{finnish}{Meteorologian, ilmakeh\"a- ja ilmastoj\"arjestelm\"atieteiden\\maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet i meteorologi, atmosf\"arsvetenskaper\\och klimatvetenskaper}{}
@@ -930,6 +980,18 @@
     \abst@small\put(207, 634){\makebox(200, 18)[l]{\shortstack[l]{\programme}}}
 }{}
 \fi
+\if@matres
+\put(5, 634){\makebox(200, 8)[l]{\abst@small \faculty}}
+\iflanguage{english}{
+    \abst@small\put(162, 634){\makebox(200, 8)[l]{\programme}}
+}{}
+\iflanguage{swedish}{
+    \abst@small\put(202, 634){\makebox(200, 8)[l]{\programme}}
+}{}
+\iflanguage{finnish}{
+    \abst@small\put(207, 634){\makebox(200, 8)[l]{\programme}}
+}{}
+\fi
 %%% Programme specific content ends
 
 \put(5,  601){\makebox(100, 8)[l]{\abst@small \@author}}
@@ -1004,6 +1066,21 @@
 }{}
 \fi
 \if@mac
+\put(5,657){\makebox(150,6)[l]{\abst@tiny Tiedekunta --- Fakultet --- Faculty}}
+\iflanguage{english}{
+\put(157,629){\line(0,1){37}} % pystyviiva
+\put(162,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{swedish}{
+\put(198,629){\line(0,1){37}} % pystyviiva
+\put(203,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\iflanguage{finnish}{
+\put(203,629){\line(0,1){37}} % pystyviiva
+\put(208,657){\makebox(100,5)[l]{\abst@tiny \oppiaine}}
+}{}
+\fi
+\if@matres
 \put(5,657){\makebox(150,6)[l]{\abst@tiny Tiedekunta --- Fakultet --- Faculty}}
 \iflanguage{english}{
 \put(157,629){\line(0,1){37}} % pystyviiva
