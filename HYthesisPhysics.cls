@@ -64,6 +64,8 @@
 \@inorganicfalse%
 \newif\if@electronics% 
 \@electronicsfalse%
+\newif\if@sustainable% 
+\@sustainablefalse%
 % programme specific content ends
 \newif\if@onesupervisor% 
 \@onesupervisorfalse%
@@ -102,6 +104,7 @@
 \DeclareOption{polymer-track}{\@polymertrue}
 \DeclareOption{inorganic-track}{\@inorganictrue}
 \DeclareOption{electronics-track}{\@electronicstrue}
+\DeclareOption{sustainable-track}{\@sustainabletrue}
 % programme specific content ends
 
 \DeclareOption{one-supervisor}{\@onesupervisortrue}
@@ -428,7 +431,7 @@ Materiaalitutkimuksen maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet 
         }
     \fi
     \if@polymer
-        \newcommand{\studytrack}{\iflanguage{english}{Polymer materials chemistry}{}\iflanguage{finnish}{Polymeerimateriaalikemia}{}\iflanguage{swedish}{Polymermaterialkemi}{}
+        \newcommand{\studytrack}{\iflanguage{english}{Polymer materials chemistry}{}\iflanguage{finnish}{Polymeerimateriaalien kemia}{}\iflanguage{swedish}{Polymermaterialkemi}{}
         }
     \fi
     \if@inorganic
@@ -436,7 +439,11 @@ Materiaalitutkimuksen maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet 
         }
     \fi
     \if@electronics
-        \newcommand{\studytrack}{\iflanguage{english}{Electronics and industrial applications}{}\iflanguage{finnish}{Elektroniikka ja teollisuuden sovellukset}{}\iflanguage{swedish}{Elektronik och industriella till\"ampningar}{}
+        \newcommand{\studytrack}{\iflanguage{english}{Electronics and industrial applications}{}\iflanguage{finnish}{Elektroniikka ja teollisuusfysiikka}{}\iflanguage{swedish}{Elektronik och industrifysik}{}
+        }
+    \fi
+    \if@sustainable
+        \newcommand{\studytrack}{\iflanguage{english}{Sustainable materials}{}\iflanguage{finnish}{Kest\"av\"at materiaalit}{}\iflanguage{swedish}{H\r{a}llbara material}{}
         }
     \fi
 \fi
