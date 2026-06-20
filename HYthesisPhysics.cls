@@ -233,7 +233,8 @@
 \RequirePackage{titleps}
 \RequirePackage[page,toc,title,titletoc,header]{appendix}
 % \patchcmd{\@chap@pppage}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}
-\RequirePackage[subfigure]{tocloft}
+% \RequirePackage[subfigure]{tocloft}
+\RequirePackage{tocloft}
 % \noappendicestocpagenum
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter}{0.5em}{}
 \titlespacing*{\chapter}{0pt}{-20pt}{30pt}
@@ -492,18 +493,6 @@ Materiaalitutkimuksen maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet 
 \newcommand{\department}{\programme}
 %% actual parameters from document
 
-%% Look of the reports
-\usepackage{lmodern} 
-\usepackage{textcomp} 
-\usepackage[pdftex]{color, graphicx} % For pdf output and jpg/png graphics
-\usepackage{epsfig}
-\usepackage{subfigure} 
-\usepackage{tikz}            % For making vector graphics (hard to learn but powerful)
-\usepackage{amsmath, amssymb} % For better math
-\usepackage[footnotesize,bf]{caption}  % For more control over figure captions
-\usepackage{blindtext}
-\usepackage{everyshi}
-
 \newtoggle{mainmatter}
 \newtoggle{backmatter}
 \togglefalse{mainmatter}
@@ -536,12 +525,17 @@ Materiaalitutkimuksen maisteriohjelma}{}\iflanguage{swedish}{Magisterprogrammet 
     % \thispagestyle{empty}
 }
 
-\EveryShipout{%
+%% Outdated package
+% \usepackage{everyshi}
+% \EveryShipout{%
+%     \iftoggle{mainmatter}{\stepcounter{numberofpages}}{}%
+%     \iftoggle{backmatter}{\stepcounter{numberofappendixpages}{}}
+% }
+
+ \AddToHook{shipout/before}{%
     \iftoggle{mainmatter}{\stepcounter{numberofpages}}{}%
     \iftoggle{backmatter}{\stepcounter{numberofappendixpages}{}}
 }
-
-
 
 % Additions and changes for document key terms. 
 % These address elements required for computer science.
