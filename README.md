@@ -13,11 +13,11 @@ The instructions for other distros will be similar.
     ```
 1. Build the project with `rubber`.
     ```
-    > rubber --pdf HY-Physics-main.tex
+    > rubber --pdf --into build HY-Physics-main.tex
     ```
-    This produces `HY-Physics-main.pdf`.
+    This produces `build/HY-Physics-main.pdf`.
 
 To clean, run
 ```
-> rubber --clean HY-Physics-main.tex
+> rubber --pdf --clean --into build HY-Physics-main.tex
 ```
